@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +22,10 @@ public class Unit {
 	private int id;
 	@Column(name = "UNIT_NUMBER")
 	private String unitNumber;
-	@Column(name = "PROPERTY_ID")
+	@ManyToOne
+	@JoinColumn(name = "PROPERTY_ID")
 	private Property property;
-	@Column(name = "TENANT_ID")
+	@OneToMany(mappedBy = "unit")
 	private List<Tenant> tenants;
 
 	public Unit() {

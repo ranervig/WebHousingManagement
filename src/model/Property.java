@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +20,9 @@ public class Property {
 	private int id;
 	@Column(name = "ADDRESS")
 	private String address;
-
+	@OneToMany(mappedBy = "property")
+	private List<Unit> units;
+	
 	public Property() {
 		super();
 	}
