@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Unit {
 	@ManyToOne
 	@JoinColumn(name = "PROPERTY_ID")
 	private Property property;
-	@OneToMany(mappedBy = "unit")
+	@OneToMany(mappedBy = "unit", cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
 	private List<Tenant> tenants;
 
 	public Unit() {
@@ -43,6 +44,12 @@ public class Unit {
 	public Unit(int id, String unitNumber, Property property) {
 		super();
 		this.id = id;
+		this.unitNumber = unitNumber;
+		this.property = property;
+	}
+
+	public Unit(String unitNumber, Property property) {
+		super();
 		this.unitNumber = unitNumber;
 		this.property = property;
 	}
