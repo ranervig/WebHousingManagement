@@ -69,7 +69,7 @@ public class listNavigationServlet extends HttpServlet {
 				if(daoForItems.showAllItems().isEmpty()){
 						request.setAttribute("allItems", " ");
 				}
-				getServletContext().getRequestDispatcher("/edit-list.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/edit-property.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 				getServletContext().getRequestDispatcher("/viewAllPropertiesServlet").forward(request, response);
 			} 

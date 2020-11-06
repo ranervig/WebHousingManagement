@@ -21,19 +21,28 @@
 	font-color: blue;
 	}	
 </style>
-<title>Customer List</title>
+<title>Tenant List</title>
 </head>
 <body>
 <div id="container">
-<p style="background-color:tomato" align="center"> Online Book Library list of customer books out on rent </p>
+<p style="background-color:tomato" align="center"> Tenants Lease List </p>
 <form method = "post" action = "listNavigationServlet">
 <table>
 <c:forEach items="${requestScope.allItems}" var="currentlist">
 <tr>
    <td><input type="radio" name="id" value="${currentlist.id}"></td>
-   <td><h2>${currentlist.listName}</h2></td></tr>
-   <tr><td colspan="3">Lease Date: ${currentlist.leaseDate}</td></tr>
-   <tr><td colspan="3">Tenant: ${currentlist.tenat.tenantName}</td></tr>
+   
+   <tr>
+   		<td colspan="3">Tenant: ${currentlist.tenant.name}</td>
+   		<td colspan="3">Lease Signing Date: ${currentlist.leaseDate}</td>   	
+   	</tr>   
+   <tr>   	   		
+   		<td colspan="3">Lease Start Date: ${currentlist.tenant.rentStart}</td>
+   		<td colspan="3"> Lease End Date: ${currentlist.tenant.rentEnd}</td>
+   		<td colspan="3">Rent Price per Month: ${currentlist.tenant.rent}</td>
+   		<td colspan="3">Apt No.: ${currentlist.tenant.unit_number}</td>
+   </tr>     
+   
    <c:forEach var = "listVal" items = "${currentlist.listOfUnits}">
             <tr><td></td><td colspan="3">
                 ${listVal.name}, ${listVal.address}

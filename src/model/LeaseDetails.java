@@ -17,31 +17,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "propertymgt.lease")
+@Table(name = "propertymgt.unit")
 public class LeaseDetails {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="LEASE_ID")
-	private int id = 0;
-	
-	@Column(name="UNIT_NUMBER")
-	private String unitNumber;
+	@Column(name="UNIT_ID")
+	private int id;
 	
 	@Column(name="LEASE_DATE")
 	private LocalDate leaseDate;
 	
 	@ManyToOne (cascade=CascadeType.PERSIST)
-	@JoinColumn(name="UNIT_ID")
+	@JoinColumn(name="TENANT_ID")
 	
-	private Tenant tenant;	
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	private Tenant tenant;		
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)	
 	
 	@JoinTable
-	  (
-	      name="propertymgt.lease",
-	      joinColumns={ @JoinColumn(name="UNIT_ID", referencedColumnName="UNIT_ID") },
-	      inverseJoinColumns={ @JoinColumn(name="LEASE_ID", referencedColumnName="ID", unique=true) }
+	  (   name="propertymgt.lease",
+	      joinColumns={ @JoinColumn(name="UNIT_ID", referencedColumnName="UNIT_ID") },	   
+	      inverseJoinColumns={ @JoinColumn(name="LEASE_ID", referencedColumnName="PROPERTY_ID", unique=true) }
 	  )
 	
 	private List<Property> listOfUnits;
@@ -50,35 +46,29 @@ public class LeaseDetails {
 		super();		
 	}	
 	
-	public LeaseDetails(int id, String unitNumber, LocalDate leaseDate,	Tenant tenant, List<Property> listOfUnits){
+	public LeaseDetails(int id, LocalDate leaseDate, Tenant tenant, List<Property> listOfUnits){
 		super();
-		this.id = id;
-		this.unitNumber = unitNumber;
+		this.id = id;		
 		this.leaseDate = leaseDate;
 		this.tenant = tenant;
 		this.listOfUnits = listOfUnits;
 	}
 	
-	public LeaseDetails(String unitNumber, LocalDate leaseDate,	Tenant tenant, List<Property> listOfUnits){
+	public LeaseDetails(LocalDate leaseDate, Tenant tenant, List<Property> listOfUnits){
 		super();
-		
-		this.unitNumber = unitNumber;
 		this.leaseDate = leaseDate;
 		this.tenant = tenant;
 		this.listOfUnits = listOfUnits;
 	}
 	
-	public LeaseDetails(String unitNumber, LocalDate leaseDate,	Tenant tenant){
-		super();
-		
-		this.unitNumber = unitNumber;
+	public LeaseDetails(LocalDate leaseDate, Tenant tenant){
+		super();	
 		this.leaseDate = leaseDate;
 		this.tenant = tenant;		
 	}	
 	
-	public LeaseDetails(String unitNumber, LocalDate leaseDate){
+	public LeaseDetails(LocalDate leaseDate){
 		super();		
-		this.unitNumber = unitNumber;
 		this.leaseDate = leaseDate;
 			
 	}
@@ -89,14 +79,6 @@ public class LeaseDetails {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getUnitNumber() {
-		return unitNumber;
-	}
-
-	public void setUnitNumber(String unitNumber) {
-		this.unitNumber = unitNumber;
 	}
 
 	public LocalDate getLeaseDate() {
@@ -125,12 +107,8 @@ public class LeaseDetails {
 
 	@Override
 	public String toString() {
-		return "LeaseDetails [id=" + id + ", unitNumber=" + unitNumber + ", leaseDate=" + leaseDate + ", tenant="
+		return "LeaseDetails [id=" + id + ", leaseDate=" + leaseDate + ", tenant="
 				+ tenant + ", listOfUnits=" + listOfUnits + "]";
-	}
-	
-	
-	
-	
+	}	
 
 }

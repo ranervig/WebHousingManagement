@@ -15,42 +15,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "propertymgt.unit")
+//@Entity
+//@Table(name = "propertymgt.unit")
 public class Unit {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "UNIT_ID")
-	private int id;
-	
-	@Column(name = "UNIT_NUMBER")
-	private String unitNumber;
-	
-	@JoinColumn(name = "PROPERTY_ID")
-	private Property property;
-	
-	@JoinColumn(name = "TENANT_ID")
-	
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column(name = "UNIT_ID")
+	private int id;	
+
+	//@JoinColumn(name = "TENANT_ID")	
 	private List<Tenant> tenants;
 
 	public Unit() {
 		super();
 	}
 
-	public Unit(int id, String unitNumber, Property property, List<Tenant> tenants) {
+	public Unit(int id, List<Tenant> tenants) {
 		super();
-		this.id = id;
-		this.unitNumber = unitNumber;
-		this.property = property;
+		this.id = id;	
 		this.tenants = tenants;
 	}
 
-	public Unit(int id, String unitNumber, Property property) {
+	public Unit(int id) {
 		super();
-		this.id = id;
-		this.unitNumber = unitNumber;
-		this.property = property;
+		this.id = id;		
 	}
 
 	public int getId() {
@@ -59,22 +48,6 @@ public class Unit {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getUnitNumber() {
-		return unitNumber;
-	}
-
-	public void setUnitNumber(String unitNumber) {
-		this.unitNumber = unitNumber;
-	}
-
-	public Property getProperty() {
-		return property;
-	}
-
-	public void setProperty(Property property) {
-		this.property = property;
 	}
 
 	public List<Tenant> getTenants() {
@@ -87,8 +60,7 @@ public class Unit {
 
 	@Override
 	public String toString() {
-		return "Unit [id=" + id + ", unitNumber=" + unitNumber + ", property=" + property + ", tenants=" + tenants
-				+ "]";
+		return "Unit [id=" + id + ", tenants=" + tenants + "]";
 	}
 
 }

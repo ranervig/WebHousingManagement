@@ -5,7 +5,6 @@
 		<class>model.LeaseDetails</class>
 		<class>model.Tenant</class>
 		<class>model.Property</class>
-		<class>model.Unit</class>
 		<class>controller.LocalDateAttributeConverter</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

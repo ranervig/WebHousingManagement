@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Web Housing Managment</title>
+<title>Web Housing Management</title>
 
 <style>
 	div#container	{
@@ -20,12 +20,13 @@
 <body>
 <div id="container">
 	<form method="post" action ="navigationPropertyServlet">
-	<table><h4 style="background-color:tomato" align="center"> Property Housing Management</h4>
-	<p> Please make sure you check the property you want to EDIT or DELETE</p>
-	<c:forEach items="${requestScope.allPropertys}" var="currentproperty">
-		<tr>
-			<td><input type="radio" name="id" value="${currentproperty.id}"></td>
-			<td>Name: ${currentproperty.name}</td>
+		<table>
+			<h4 style="background-color:tomato" align="center"> Property Housing Management</h4>
+			<p> Please make sure you check the property you want to EDIT or DELETE</p>
+			<c:forEach items="${requestScope.allPropertys}" var="currentproperty">
+			<tr>
+				<td><input type="radio" name="id" value="${currentproperty.id}"></td>
+				<td>Name: ${currentproperty.name}</td>
 			<td> || Address: ${currentproperty.address}</td>			
 		</tr>
 	</c:forEach>	
@@ -35,10 +36,9 @@
 	<input type = "submit" value = "edit" name="doThisToProperty">
 	<input type = "submit" value = "delete" name="doThisToProperty">
 	<input type = "submit" value = "add" name="doThisToProperty">
-	</form>
-	<p> Click the below link to go to home page again</p>
+	</form>	
 	<p>
-		<a href = "/index.html"> Go to home page</a>
+		<a href = "index.html"> Go to home page</a>
 	</p>
 </div>
 </body>

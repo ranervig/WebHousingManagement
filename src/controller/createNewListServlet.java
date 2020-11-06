@@ -82,7 +82,8 @@ public class createNewListServlet extends HttpServlet {
 		}
 		
 		Tenant tenant = new Tenant(tenantName, rent, rentStart, rentEnd, aptNo);
-		LeaseDetails sld = new LeaseDetails(aptNo, leaseSingingDate, tenant);
+		//LeaseDetails sld = new LeaseDetails(aptNo, leaseSingingDate, tenant);
+		LeaseDetails sld = new LeaseDetails(leaseSingingDate, tenant);
 		sld.setListOfUnits(selectedPropertyInList);
 		ListLeaseDetailsHelper slh = new ListLeaseDetailsHelper();
 		slh.insertItem(sld);
