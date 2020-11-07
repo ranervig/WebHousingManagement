@@ -36,7 +36,7 @@ public class LeaseDetails {
 	
 	@JoinTable
 	  (   name="propertymgt.lease",
-	      joinColumns={ @JoinColumn(name="UNIT_ID", referencedColumnName="UNIT_ID") },	   
+	      joinColumns={ @JoinColumn(name="UNIT_ID", referencedColumnName="TENANT_ID") },	   
 	      inverseJoinColumns={ @JoinColumn(name="LEASE_ID", referencedColumnName="PROPERTY_ID", unique=true) }
 	  )
 	

@@ -41,7 +41,7 @@ public class listNavigationServlet extends HttpServlet {
 
 		if (act == null) {
 			// no button has been selected
-			getServletContext().getRequestDispatcher("/viewAllPropertiesServlet").forward(request, response);
+			getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 
 		} else if (act.equals("delete")) {
 			try {
@@ -52,7 +52,7 @@ public class listNavigationServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to click a button");
 			} finally {
-				getServletContext().getRequestDispatcher("/viewAllPropertiesServlet").forward(request, response);
+				getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 			}
 
 		} else if (act.equals("edit")) {
@@ -67,22 +67,16 @@ public class listNavigationServlet extends HttpServlet {
 				ListPropertyHelper daoForItems = new ListPropertyHelper();				
 				request.setAttribute("allItems", daoForItems.showAllItems());						
 				if(daoForItems.showAllItems().isEmpty()){
-						request.setAttribute("allItems", " ");
+				request.setAttribute("allItems", " ");
 				}
-				getServletContext().getRequestDispatcher("/edit-property.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/editlist.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
-				getServletContext().getRequestDispatcher("/viewAllPropertiesServlet").forward(request, response);
+				getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 			} 
 
 		} else if (act.equals("add")) {
-			
-			ListPropertyHelper daoForItems = new ListPropertyHelper();				
-			request.setAttribute("allItems", daoForItems.showAllItems());						
-			if(daoForItems.showAllItems().isEmpty()){
-					request.setAttribute("allItems", " ");
-			getServletContext().getRequestDispatcher("/new-list.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/addPropertyForListServlet").forward(request, response);			
 		}
-	}
 	}
 
 }

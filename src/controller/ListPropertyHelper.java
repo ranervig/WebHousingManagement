@@ -22,6 +22,14 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		em.close();
 	}
 	
+	public void updatePropertys(Property toEdit) {		
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();		
+		em.merge(toEdit);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
 	public List<Property>showAllItems(){
 		EntityManager em = emfactory.createEntityManager();
 		List<Property> allItems = em.createQuery("SELECT i FROM Property i").getResultList();

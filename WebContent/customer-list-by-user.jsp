@@ -32,21 +32,24 @@
 <tr>
    <td><input type="radio" name="id" value="${currentlist.id}"></td>
    
-   <tr>
-   		<td colspan="3">Tenant: ${currentlist.tenant.name}</td>
-   		<td colspan="3">Lease Signing Date: ${currentlist.leaseDate}</td>   	
-   	</tr>   
-   <tr>   	   		
+   <tr>  
+   		<td colspan="3">Tenant: ${currentlist.tenant.name}</td>  		
+   		<td colspan="3">Lease Signing Date: ${currentlist.leaseDate}</td>      			
+   </tr>   
+     
+   <tr>  
+   			   		
    		<td colspan="3">Lease Start Date: ${currentlist.tenant.rentStart}</td>
    		<td colspan="3"> Lease End Date: ${currentlist.tenant.rentEnd}</td>
-   		<td colspan="3">Rent Price per Month: ${currentlist.tenant.rent}</td>
-   		<td colspan="3">Apt No.: ${currentlist.tenant.unit_number}</td>
-   </tr>     
-   
+   </tr>
+  <tr>
+   		<td colspan="3">Rent Price per Month: ${currentlist.tenant.rent}</td> 
+   		<td colspan="3">Apt No.: ${currentlist.tenant.unit_number}</td> 	
+    </tr>
+        
    <c:forEach var = "listVal" items = "${currentlist.listOfUnits}">
-            <tr><td></td><td colspan="3">
-                ${listVal.name}, ${listVal.address}
-                </td>
+            <tr>            	  
+           		 <td colspan="3"> ${listVal.name}, ${listVal.address} </td>               
             </tr>
   </c:forEach>
 </c:forEach>

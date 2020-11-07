@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.Property;
+import model.Tenant;
 
 public class PropertyHelper {
 	
@@ -27,6 +29,23 @@ public class PropertyHelper {
 		EntityManager em = emfactory.createEntityManager();
 		List<Property> allPropertys = em.createQuery("SELECT i FROM Property i").getResultList();
 		return	allPropertys;
+	}
+	
+	public Tenant findTenant(String nameToLookUp) {
+
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		TypedQuery<Tenant> typedQuery = em.createQuery("select sh from Tenant sh where sh.name = :selectedName", Tenant.class);
+		typedQuery.setParameter("selectedName", nameToLookUp);
+		Tenant foundTenant;
+		try {
+			foundTenant = typedQuery.getSingleResult();
+		} catch (NoResultException ex) {
+			foundTenant = new Tenant(nameToLookUp);
+		}
+		em.close();
+
+		return foundTenant;
 	}
 	
 	// method to delete Property

@@ -26,12 +26,12 @@ public class addPropertyForListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ListPropertyHelper dao = new ListPropertyHelper();
 		
-		request.setAttribute("allItems", dao.showAllItems());
-					
+		ListPropertyHelper dao = new ListPropertyHelper();		
+		request.setAttribute("allItems", dao.showAllItems());	
+		
 		if(dao.showAllItems().isEmpty()){
-				request.setAttribute("allItems", " ");
+		request.setAttribute("allItems", " ");
 		}
 		
 		getServletContext().getRequestDispatcher("/new-list.jsp").forward(request, response);

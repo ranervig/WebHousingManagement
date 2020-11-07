@@ -48,7 +48,7 @@ public class editPropertyServlet extends HttpServlet {
 		
 		dao.updatePropertys(propertyToUpdate);
 		
-		getServletContext().getRequestDispatcher("/viewAllPropertyServlet").forward(request, response);
+		getServletContext().getRequestDispatcher("/viewAllPropertiesServlet").forward(request, response);
 	}
 
 }
